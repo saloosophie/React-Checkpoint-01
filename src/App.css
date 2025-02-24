@@ -1,142 +1,90 @@
 /* src/App.css */
 
-/* Variables CSS pour les couleurs et les espacements */
+/* Variables CSS pour une personnalisation facile */
 :root {
-  --primary-color: #0052a5;
-  --secondary-color: #ffffff;
-  --text-color: #000000;
-  --shadow-color: rgba(0, 0, 0, 0.1);
-  --border-radius: 10px;
-  --spacing-unit: 1rem;
+  --primary-color: #0026ff; /* Vert vif pour une meilleure visibilité */
+  --background-color: #000000ec; /* Fond plus foncé pour le contraste */
+  --text-color: #ffffff; /* Texte blanc pour la lisibilité */
+  --card-background: #0224e2; /* Vert plus doux pour les cartes */
+  --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  --spacing-unit: 1rem; /* Unité d'espacement */
+  --border-radius: 12px; /* Arrondi des bords */
+  --transition-speed: 0.3s; /* Vitesse des animations */
 }
 
-/* Reset de base pour une meilleure cohérence entre les navigateurs */
-body {
+/* Reset général pour uniformiser l'affichage */
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  background-color: var(--primary-color);
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: var(--background-color);
   color: var(--text-color);
   line-height: 1.6;
-}
-
-/* Conteneur principal */
-.container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding: var(--spacing-unit);
 }
 
-/* Carte pour afficher le produit */
+/* Conteneur principal */
+.App {
+  padding: var(--spacing-unit);
+  max-width: 1200px;
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Titre principal */
+h1 {
+  color: var(--primary-color);
+  font-size: 2.5rem;
+  margin-bottom: calc(var(--spacing-unit) * 2);
+  text-shadow: 2px 2px 6px rgb(255, 0, 0);
+  font-weight: bold;
+}
+
+/* Styles des cartes */
 .card {
-  background-color: var(--secondary-color);
+  background-color: var(--card-background);
   border-radius: var(--border-radius);
-  box-shadow: 0 4px 8px var(--shadow-color);
+  box-shadow: var(--card-shadow);
+  padding: var(--spacing-unit);
+  transition: transform var(--transition-speed) ease, 
+              box-shadow var(--transition-speed) ease;
+  max-width: 400px;
   width: 100%;
-  max-width: 24rem;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 16px var(--shadow-color);
+  box-shadow: 0 10px 20px rgb(233, 0, 0);
 }
 
-/* Corps de la carte */
-.card-body {
-  padding: calc(var(--spacing-unit) * 1.5);
-  text-align: center;
-}
-
-/* Image du produit */
-.card img {
-  width: 100%;
-  height: auto;
-  border-radius: var(--border-radius) var(--border-radius) 0 0;
-}
-
-/* Titre du produit */
-.card h1 {
-  font-size: 1.5rem;
-  margin-bottom: calc(var(--spacing-unit) * 0.5);
-  color: var(--primary-color);
-}
-
-/* Prix du produit */
-.card p.price {
-  font-size: 1.25rem;
-  font-weight: bold;
-  color: #28a745; /* Couleur verte pour le prix */
-  margin: calc(var(--spacing-unit) * 0.5) 0;
-}
-
-/* Description du produit */
-.card p.description {
-  font-size: 1rem;
-  color: var(--text-color);
-  margin: calc(var(--spacing-unit) * 0.5) 0;
-}
-
-/* Message de bienvenue */
-.welcome-message {
-  margin-top: calc(var(--spacing-unit) * 1.5);
-  font-size: 1.25rem;
-  color: var(--secondary-color);
-}
-
-/* Image supplémentaire si un prénom est fourni */
-.welcome-image {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-top: calc(var(--spacing-unit) * 0.5);
-  border: 2px solid var(--secondary-color);
-}
-/*  Styles pour l'image de l'utilisateur */ 
-.user-image {
-  width: 100px; /* Taille de l'image */
-  height: 100px; /* Taille de l'image */
-  border-radius: 50%; /* Rend l'image ronde */
-  border: 3px solid var(--secondary-color); /* Bordure blanche */
-  box-shadow: 0 4px 8px var(--shadow-color); /* Ombre légère */
-  object-fit: cover; /* Assure que l'image couvre toute la zone sans déformation */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation au survol */
-}
-/* Effet au survol de l'image */
-.user-image:hover {
-  transform: scale(1.1); /* Agrandit légèrement l'image */
-  box-shadow: 0 8px 16px var(--shadow-color); /* Ombre plus prononcée */
-}
-
-/* Conteneur pour l'image de l'utilisateur */
-.user-image-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 740px; /* Marge en haut */
-  margin-right: 1200px; /* Marge à gauche */
+/* Effet de survol plus doux */
+.card:active {
+  transform: scale(0.98);
 }
 
 /* Styles responsives */
 @media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .App {
+    padding: calc(var(--spacing-unit) * 0.5);
+  }
+
   .card {
-    max-width: 100%;
-  }
-
-  .card h1 {
-    font-size: 1.25rem;
-  }
-
-  .card p.price {
-    font-size: 1rem;
-  }
-
-  .card p.description {
-    font-size: 0.875rem;
-  }
-
-  .welcome-message {
-    font-size: 1rem;
+    max-width: 90%;
   }
 }
